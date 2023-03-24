@@ -6,9 +6,8 @@
   "scripts": {
     "webpack": "webpack",
     "webpack-dev-server": "webpack-dev-server --history-api-fallback",
-    "prod": "npm run webpack -- --env.mode production --env.presets serviceworker",
-    "dev": "npm run webpack-dev-server -- --env.mode development",
-    "dev:sw": "npm run webpack-dev-server -- --env.mode development  --env.presets serviceworker"
+    "prod": "npm run webpack -- --env.mode production",
+    "dev": "npm run webpack-dev-server -- --env.mode development"
   },
   "devDependencies": {
     "@babel/core": "^7.1.5",

@@ -14,6 +14,15 @@ const data = [
   { merge: "21-04-2023", prod: "10-05-2023", id: "Movil", version: "12.14" },
   { merge: "26-05-2023", prod: "14-06-2023", id: "Movil", version: "12.x" },
 ];
+const sprints = [
+  {},
+  { start: "29-03-2023", end: "11-04-2023" },
+  { start: "12-04-2023", end: "25-04-2023" },
+  { start: "26-04-2023", end: "09-05-2023" },
+  { start: "10-05-2023", end: "23-05-2023" },
+  { start: "24-05-2023", end: "06-06-2023" },
+  { start: "07-06-2023", end: "20-06-2023" },
+];
 
 export class CalendarView extends LitElement {
   static get properties() {
@@ -31,6 +40,10 @@ export class CalendarView extends LitElement {
         p {
           margin: 2px;
         }
+        .column {
+          display: flex;
+          flex-direction: column;
+        }
         .monthTable {
           padding: 0.1rem;
           position: absolute;
@@ -40,15 +53,16 @@ export class CalendarView extends LitElement {
           align-items: center;
         }
         .month {
-          min-height: 400px;
+          min-height: 450px;
           background-color: #dddddd;
         }
         .monthHeader {
-          background-color: navy;
+          background-color: #3636b2;
           color: white;
           padding: 0.5rem;
           width: 400px;
           border: 1px solid gray;
+          height: 1.5rem;
         }
         .version {
           position: absolute;
@@ -74,9 +88,33 @@ export class CalendarView extends LitElement {
         }
         .today {
           position: absolute;
-          border-left: 1px solid red;
+          border-left: 1px solid rgba(255, 0, 0, 0.5);
           height: 22rem;
           top: 2.8rem;
+        }
+        .sprint {
+          position: absolute;
+          border: 2px dotted #999;
+          top: 0;
+          margin-top: 2.75rem;
+          height: 88%;
+          color: #888;
+        }
+        .sprint div {
+          padding: 0.2rem 0.1rem;
+        }
+        .grow {
+          flex-grow: 1;
+        }
+        .grow2 {
+          flex-grow: 2;
+        }
+        .fontBig {
+          font-size: 2.5rem;
+          margin-bottom: 1rem;
+          margin-top: 0.5rem;
+          color: #999;
+          transform: scale(1, 2);
         }
       `,
     ];
@@ -90,7 +128,7 @@ export class CalendarView extends LitElement {
     return html`
       <h1>Releases</h1>
       <div class="monthTable">
-        ${this.today()}${this.monthHeaders()}${this.rows()}
+        ${this.today()}${this.monthHeaders()}${this.sprints()}${this.rows()}${this.today()}
       </div>
     `;
   }
@@ -139,6 +177,34 @@ export class CalendarView extends LitElement {
       MONTH_WIDTH * moment().diff(this.start, "months", true)
     );
     return html`<div class="today" style="left:${left}px;"></div>`;
+  }
+
+  sprints() {
+    return sprints.map((el, i) => {
+      if (this.start && el.start) {
+        const start = moment(el.start, DATE_FORMAT);
+        const end = moment(el.end, DATE_FORMAT);
+        const left = Math.round(
+          MONTH_WIDTH * start.diff(this.start, "months", true)
+        );
+        const width = Math.round(
+          MONTH_WIDTH * (0.015 + end.diff(start, "months", true))
+        );
+        return html`<div
+          class="sprint column"
+          style="left:${left}px; width:${width}px;"
+        >
+          <div class="column grow">
+            <div class="grow"></div>
+            <div class="datesRow">
+              <span>${start.format(MONTH_DAY_FORMAT)}</span
+              ><span>${end.format(MONTH_DAY_FORMAT)}</span>
+            </div>
+            <div class="fontBig">SPRINT ${i}</div>
+          </div>
+        </div>`;
+      }
+    });
   }
 }
 

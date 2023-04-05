@@ -4,14 +4,16 @@
   "description": "",
   "main": "index.js",
   "engines": {
-    "node": "14.x"
+    "node": "14 .x"
   },
   "scripts": {
     "webpack": "webpack",
     "heroku-postbuild": "npm run webpack -- --env.mode production",
     "webpack-dev-server": "webpack-dev-server --history-api-fallback",
+    "dev": "npm run webpack-dev-server -- --env.mode development",
     "prod": "npm run webpack -- --env.mode production",
-    "dev": "npm run webpack-dev-server -- --env.mode development"
+    "zip-dist": "tar -zcf dist.tar.gz dist",
+    "send-dist": "scp dist.tar.gz pi@raspberrypi.local:~/git/release-calendar/"
   },
   "devDependencies": {
     "@babel/core": "^7.1.5",

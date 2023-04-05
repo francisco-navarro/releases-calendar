@@ -8,6 +8,7 @@
   },
   "scripts": {
     "build": "npm run webpack -- --env.mode production",
+    "webpack": "webpack",
     "deploy": "gh-pages -d dist",
     "heroku-postbuild": "npm run webpack -- --env.mode production",
     "webpack-dev-server": "webpack-dev-server --history-api-fallback",

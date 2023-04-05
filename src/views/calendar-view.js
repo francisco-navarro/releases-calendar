@@ -13,6 +13,7 @@ const data = [
   { merge: "24-03-2023", prod: "12-04-2023", id: "Movil", version: "12.13" },
   { merge: "21-04-2023", prod: "10-05-2023", id: "Movil", version: "12.14" },
   { merge: "26-05-2023", prod: "14-06-2023", id: "Movil", version: "12.x" },
+  { merge: "30-06-2023", prod: "19-07-2023", id: "Movil", version: "12.x" },
 ];
 const sprints = [
   {},
@@ -88,8 +89,8 @@ export class CalendarView extends LitElement {
         }
         .today {
           position: absolute;
-          border-left: 1px solid rgba(255, 0, 0, 0.5);
-          height: 22rem;
+          border-left: 2px solid rgba(255, 0, 0, 0.3);
+          height: 25rem;
           top: 2.8rem;
         }
         .sprint {

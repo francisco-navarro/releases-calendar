@@ -17,12 +17,13 @@ const data = [
 ];
 const sprints = [
   {},
-  { start: "29-03-2023", end: "11-04-2023" },
-  { start: "12-04-2023", end: "25-04-2023" },
-  { start: "26-04-2023", end: "09-05-2023" },
-  { start: "10-05-2023", end: "23-05-2023" },
-  { start: "24-05-2023", end: "06-06-2023" },
-  { start: "07-06-2023", end: "20-06-2023" },
+  { start: "29-03-2023", end: "11-04-2023", name: "SPRINT 1" },
+  { start: "12-04-2023", end: "25-04-2023", name: "SPRINT 2" },
+  { start: "26-04-2023", end: "09-05-2023", name: "SPRINT 3" },
+  { start: "10-05-2023", end: "23-05-2023", name: "SPRINT 4" },
+  { start: "24-05-2023", end: "06-06-2023", name: "SPRINT 5" },
+  { start: "07-06-2023", end: "20-06-2023", name: "SPRINT 6" },
+  { start: "21-06-2023", end: "30-06-2023", name: "SP 7" },
 ];
 
 export class CalendarView extends LitElement {
@@ -201,7 +202,7 @@ export class CalendarView extends LitElement {
               <span>${start.format(MONTH_DAY_FORMAT)}</span
               ><span>${end.format(MONTH_DAY_FORMAT)}</span>
             </div>
-            <div class="fontBig">SPRINT ${i}</div>
+            <div class="fontBig">${el.name}</div>
           </div>
         </div>`;
       }

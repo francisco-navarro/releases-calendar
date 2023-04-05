@@ -164,7 +164,7 @@ export class CalendarView extends LitElement {
         >
           <p>${id} ${version}</p>
           <div class="datesRow">
-            <span>merge<br />${mergeDate.format(MONTH_DAY_FORMAT)}</span
+            <span>Fin merge<br />${mergeDate.format(MONTH_DAY_FORMAT)}</span
             ><span>PRO<br />${prodDate.format(MONTH_DAY_FORMAT)}</span>
           </div>
         </div>`;
